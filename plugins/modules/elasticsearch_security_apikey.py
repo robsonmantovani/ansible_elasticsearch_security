@@ -2,7 +2,7 @@
 
 DOCUMENTATION = '''
 ---
-module: elasticsearch_security_api-key
+module: elasticsearch_security_apikey
 short_description: Manage Elasticsearch security API keys
 description:
     - This module allows you to manage Elasticsearch security API keys.

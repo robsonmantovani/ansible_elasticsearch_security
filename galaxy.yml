@@ -1,4 +1,4 @@
-namespace: elastic_security
+namespace: robsonmantovani
 name: elasticsearch_security
 version: 1.0.0
 readme: README.md

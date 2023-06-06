@@ -1,4 +1,4 @@
-> ELASTICSEARCH_SECURITY_API-KEY    (plugins/modules/elasticsearch_security_api-key.py)
+> ELASTICSEARCH_SECURITY_API-KEY    (plugins/modules/elasticsearch_security_apikey.py)
 
         This module allows you to manage Elasticsearch security API
         keys. It can create or invalidate API keys.

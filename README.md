@@ -4,7 +4,7 @@ The "Elasticsearch Security" collection provides Ansible modules to manage Elast
 
 ## Modules
 
-### elasticsearch_security_api-key
+### elasticsearch_security_apikey
 
 This module allows you to manage Elasticsearch security API keys. It can create or invalidate API keys.
 
