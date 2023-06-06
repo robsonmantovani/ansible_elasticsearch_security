@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+from ansible.module_utils.basic import AnsibleModule
+from elasticsearch import Elasticsearch, NotFoundError
+import warnings
+
 DOCUMENTATION = '''
 ---
 module: elasticsearch_security_role
@@ -53,9 +57,6 @@ seealso:
   - module: elasticsearch_security_user
 '''
 
-from ansible.module_utils.basic import AnsibleModule
-from elasticsearch import Elasticsearch, NotFoundError
-import warnings
 
 def main():
 
@@ -115,6 +116,6 @@ def main():
     except Exception as e:
         module.fail_json(msg=str(e))
 
+
 if __name__ == '__main__':
     main()
-

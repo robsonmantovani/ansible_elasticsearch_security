@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+from ansible.module_utils.basic import AnsibleModule
+from elasticsearch import Elasticsearch, NotFoundError
+
 DOCUMENTATION = '''
 ---
 module: elasticsearch_security_user
@@ -75,8 +78,6 @@ seealso:
   - module: elasticsearch_security_role
 '''
 
-from ansible.module_utils.basic import AnsibleModule
-from elasticsearch import Elasticsearch, NotFoundError
 
 def main():
 
@@ -158,6 +159,6 @@ def main():
         elif state == 'absent':
             module.exit_json(changed=False, msg=f'User {user_name} does not exist. No state taken.')
 
+
 if __name__ == '__main__':
     main()
-

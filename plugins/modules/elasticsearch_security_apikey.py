@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+from ansible.module_utils.basic import AnsibleModule
+from elasticsearch import Elasticsearch, NotFoundError
+
 DOCUMENTATION = '''
 ---
 module: elasticsearch_security_apikey
@@ -63,8 +66,6 @@ seealso:
   - module: elasticsearch_security_user
 '''
 
-from ansible.module_utils.basic import AnsibleModule
-from elasticsearch import Elasticsearch, NotFoundError
 
 def main():
 
@@ -96,8 +97,6 @@ def main():
     es = Elasticsearch([es_url], basic_auth=(es_user, es_pass))
 
     try:
-        existing_user = es.security.get_user(username=user_name)
-
         if state == 'present':
             existing_api_keys = es.security.get_api_key(name=api_key_name)['api_keys']
             if existing_api_keys:
@@ -129,6 +128,6 @@ def main():
     except NotFoundError:
         module.exit_json(changed=False, msg=f'User "{user_name}" does not exist. No action taken.')
 
+
 if __name__ == '__main__':
     main()
-
