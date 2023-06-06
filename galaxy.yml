@@ -1,0 +1,10 @@
+namespace: elastic_security
+name: elasticsearch_security
+version: 1.0.0
+readme: README.md
+description: Collection for managing Elasticsearch security.
+license: BSD-2-Clause
+authors:
+  - Robson Mantovani <robsonmantovani@gmail.com>
+repository: https://github.com/seu-usuario/sua-colecao
+

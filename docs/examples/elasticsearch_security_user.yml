@@ -1,0 +1,19 @@
+- name: Manage Elasticsearch Security User
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Manage Elasticsearch Security User
+      elasticsearch_security_user:
+        state: present
+        es_url: http://localhost:9200
+        es_user: admin
+        es_pass: password
+        user_name: user1
+        user_full_name: John Doe
+        user_email: john.doe@example.com
+        user_password: mypassword
+        user_roles:
+          - role1
+          - role2
+

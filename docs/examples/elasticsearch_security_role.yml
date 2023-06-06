@@ -1,0 +1,21 @@
+- name: Manage Elasticsearch Security Role
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Manage Elasticsearch Security Role
+      elasticsearch_security_role:
+        state: present
+        es_url: http://localhost:9200
+        es_user: admin
+        es_pass: password
+        role_name: my_role
+        role_body:
+          cluster:
+            - 'cluster:monitor/main'
+          indices:
+            - names: 'my_index'
+              privileges:
+                - 'read'
+                - 'write'
+
