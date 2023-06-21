@@ -1,6 +1,6 @@
 namespace: robsonmantovani
 name: elasticsearch_security
-version: 1.0.1
+version: 1.0.2
 readme: README.md
 description: Collection for managing Elasticsearch security.
 license: BSD-2-Clause
