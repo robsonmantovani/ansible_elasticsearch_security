@@ -55,6 +55,12 @@ options:
     description:
       - Dictionary specifying the metadata for the API key.
     required: false
+  
+  tls_verify:
+    description:
+      - Whether to verify TLS certificates.
+    required: false
+    type: bool
 
 notes:
   - This module requires the `elasticsearch` Python library to be installed.
@@ -77,7 +83,8 @@ def main():
         user_name=dict(type='str', required=True),
         api_key_name=dict(type='str', required=True),
         api_key_role_descriptors=dict(type='dict', required=True),
-        api_key_metadata=dict(type='dict')
+        api_key_metadata=dict(type='dict'),
+        tls_verify=dict(type=bool),
     )
 
     module = AnsibleModule(
@@ -93,8 +100,13 @@ def main():
     api_key_name = module.params['api_key_name']
     api_key_role_descriptors = module.params['api_key_role_descriptors']
     api_key_metadata = module.params['api_key_metadata']
+    tls_verify = module.params["tls_verify"]
 
-    es = Elasticsearch([es_url], basic_auth=(es_user, es_pass))
+    if tls_verify == False:
+      es = Elasticsearch([es_url], basic_auth=(es_user, es_pass),  verify_certs=False)
+    else:
+      es = Elasticsearch([es_url], basic_auth=(es_user, es_pass))
+
 
     try:
         if state == 'present':
