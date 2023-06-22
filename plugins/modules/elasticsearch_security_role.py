@@ -47,6 +47,12 @@ options:
       - The body of the role. This should be a dictionary representing the role configuration.
     required: true
 
+  tls_verify:
+    description:
+      - Whether to verify TLS certificates.
+    required: false
+    type: bool
+
 notes:
   - This module requires the `elasticsearch` Python library to be installed.
 
@@ -66,7 +72,8 @@ def main():
         es_user=dict(type='str', required=True),
         es_pass=dict(type='str', required=True, no_log=True),
         role_name=dict(type='str', required=True),
-        role_body=dict(type='dict', required=True)
+        role_body=dict(type='dict', required=True),
+        tls_verify=dict(type=bool),
     )
 
     module = AnsibleModule(
@@ -80,8 +87,12 @@ def main():
     es_pass = module.params['es_pass']
     role_name = module.params['role_name']
     role_body = module.params['role_body']
+    tls_verify = module.params["tls_verify"]
 
-    es = Elasticsearch([es_url], basic_auth=(es_user, es_pass))
+    if tls_verify == False:
+      es = Elasticsearch([es_url], basic_auth=(es_user, es_pass),  verify_certs=False)
+    else:
+      es = Elasticsearch([es_url], basic_auth=(es_user, es_pass))
 
     try:
         if state == 'present':
